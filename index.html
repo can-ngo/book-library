@@ -16,7 +16,27 @@
     </header>
     
     <div class="sidebar">
-        <h1>Sidebar</h1>
+        <h1>New Book</h1>
+        <form action="post">
+            <p>
+                <label for="book-title"><strong>Book Title</strong></label><br>
+                <input type="text" id="book-title" name="bookTitle">
+            </p>
+            <p>
+                <label for="book-author"><strong>Author</strong></label><br>
+                <input type="text" id="book-author" name="bookAuthor">
+            </p>
+            <p>
+                <label for="book-pages"><strong>Number of pages</strong></label><br>
+                <input type="number" id="book-pages" name="bookPages">
+            </p>
+            <p>
+                <label for="title"><strong>Do you read yet?</strong></label><br>
+                <input type="radio" id="book-read-yes" name="bookRead">Yes
+                <input type="radio" id="book-read-no" name="bookRead" checked>No
+            </p>
+            <button id="add-button" type="button">Add to Library</button>
+        </form>
     </div>
     
     <main>

@@ -11,7 +11,9 @@ addBookToLibrary('Đường đi một mình', "Nguyễn Tầm Thường", 211, f
 addBookToLibrary('Những đứa con của Mẹ', "Trăng Thập Tự", 316, false);
 addBookToLibrary('Hạnh phúc ở dưới chân', "Tiến sĩ Trần Thị Giồng", 227, false);
 
-populateBookCards();
+
+myLibrary.forEach( item => item.populate())
+
 
 const readBtns = document.querySelectorAll(".read-btn");
 const deleteBtns = document.querySelectorAll(".delete-btn");
@@ -40,7 +42,6 @@ deleteBtns.forEach( (btn, index) => {
 })
 
 
-
 function addBookToLibrary(title, author, pages, isRead) {
     let newBook = new Book(title, author, pages, isRead)
     myLibrary.push(newBook);
@@ -52,30 +53,47 @@ function Book (title, author, pages, isRead){
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
-    this.info = function () {
-        return `${this.title} by ${this.author}, ${pages} pages`
-    }
-}
-
-function populateBookCards() {
-    myLibrary.forEach( (book,index) => {
+    this.populate = function () {
         const card = document.createElement('div');
         booksContainer.appendChild(card);
         card.setAttribute('class','card');
-        card.setAttribute('id', `card-${index}`)
+        card.setAttribute('id', `card-${myLibrary.indexOf(this)}`)
         card.innerHTML += `
-            <p><strong>${book.title}</strong></p>
-            <p>${book.author}</p>
-            <p>${book.pages} trang</p>
-            <p id="${index}-stat"
-                style="color: ${book.isRead? 'green' : 'red'}"    
+            <p><strong>${this.title}</strong></p>
+            <p>${this.author}</p>
+            <p>${this.pages} trang</p>
+            <p id="${myLibrary.indexOf(this)}-stat"
+                style="color: ${this.isRead? 'green' : 'red'}"    
             >
-                ${book.isRead?"Đã đọc":"Chưa đọc"}
+                ${this.isRead?"Đã đọc":"Chưa đọc"}
             </p>
             <div>
                 <button class="read-btn">Read</button>
                 <button class="delete-btn">Delete</button>
             </div>
             `
-    })
+    }
 }
+
+// function populateBookCards() {
+//     myLibrary.forEach( (book,index) => {
+//         const card = document.createElement('div');
+//         booksContainer.appendChild(card);
+//         card.setAttribute('class','card');
+//         card.setAttribute('id', `card-${index}`)
+//         card.innerHTML += `
+//             <p><strong>${book.title}</strong></p>
+//             <p>${book.author}</p>
+//             <p>${book.pages} trang</p>
+//             <p id="${index}-stat"
+//                 style="color: ${book.isRead? 'green' : 'red'}"    
+//             >
+//                 ${book.isRead?"Đã đọc":"Chưa đọc"}
+//             </p>
+//             <div>
+//                 <button class="read-btn">Read</button>
+//                 <button class="delete-btn">Delete</button>
+//             </div>
+//             `
+//     })
+// }
