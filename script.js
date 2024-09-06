@@ -16,6 +16,7 @@ populateBookCards();
 const readBtns = document.querySelectorAll(".read-btn");
 const deleteBtns = document.querySelectorAll(".delete-btn");
 
+// Read buttons function
 readBtns.forEach( (btn, index) => {
     btn.addEventListener('click', e => {
         const readStatus = document.getElementById(`${index}-stat`);
@@ -31,8 +32,12 @@ readBtns.forEach( (btn, index) => {
     })
 })
 
-
-
+// Delete buttons function
+deleteBtns.forEach( (btn, index) => {
+    btn.addEventListener('click', e => {
+        e.target.parentNode.parentNode.remove()
+    })
+})
 
 
 
