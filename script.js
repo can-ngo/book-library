@@ -1,4 +1,4 @@
-// const booksContainer = $(".books-container");
+const booksContainer = document.querySelector('.books-container');
 
 const myLibrary = [];
 
@@ -18,6 +18,20 @@ function addBookToLibrary(title, author, pages, isRead) {
     return
 }
 
+function populateBookCards() {
+    myLibrary.forEach( book => {
+        const card = document.createElement('div');
+        booksContainer.appendChild(card);
+        card.setAttribute('class','card');
+        card.innerHTML += `
+            <p><strong>${book.title}</strong></p>
+            <p>${book.author}</p>
+            <p>${book.pages} trang</p>
+            <p>${book.isRead}</p>
+            `
+    })
+}
+
 addBookToLibrary('Đức Maria tấm gương cho giáo hội', 'Raniero Cantalamessa', 393, false);
 addBookToLibrary('Tự Thuật Thánh Augustino', "Aurelius Augustino", 620, false);
 addBookToLibrary('Những chú chó săn của Chúa', "Kevin Vost", 296, false);
@@ -28,6 +42,7 @@ addBookToLibrary('Những đứa con của Mẹ', "Trăng Thập Tự", 316, fal
 addBookToLibrary('Hạnh phúc ở dưới chân', "Tiến sĩ Trần Thị Giồng", 227, false);
 
 
+populateBookCards();
 
 console.log(myLibrary);
 

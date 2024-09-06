@@ -32,8 +32,31 @@ header {
     grid-row: 2 / 3;
 }
 
+main .books-container .card { 
+    height: inherit;
+    text-align: center;
+    padding: 0 15px;
+    border: 1px solid blue;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+main .books-container {
+    height: 100%;
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fill, 220px);
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
 main {
-    background-color: brown;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 }
