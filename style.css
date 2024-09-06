@@ -32,6 +32,10 @@ header {
     grid-row: 2 / 3;
 }
 
+main .books-container .card button {
+    display: inline-block;
+}
+
 main .books-container .card { 
     height: inherit;
     text-align: center;
