@@ -26,9 +26,19 @@ myLibrary.forEach( item => item.populate())
 addBookBtn.addEventListener('click', e => {
     e.preventDefault();
     const bookIsRead = document.querySelector('input[name="bookRead"]:checked').value;
+    // Validate form input
+    if (!bookTitle.value.trim()) {
+        alert('Please type in the book title')
+        return
+    }
+    if (!bookAuthor.value.trim()) {
+        alert("Please provide author's name")
+        return
+    }
+    
     addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookIsRead === 'true')
     myLibrary[myLibrary.length - 1].populate();
-    overlay.style.display = 'none';
+    overlay.style.display = 'none';   
 })
 
 // Open modal, form
