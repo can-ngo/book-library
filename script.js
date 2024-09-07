@@ -26,44 +26,9 @@ myLibrary.forEach( item => item.populate())
 addBookBtn.addEventListener('click', e => {
     e.preventDefault();
     const bookIsRead = document.querySelector('input[name="bookRead"]:checked').value;
-
-    addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookIsRead)
-    console.log(myLibrary[myLibrary.length - 1])
+    addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookIsRead === 'true')
     myLibrary[myLibrary.length - 1].populate();
-    const readBtns = document.querySelectorAll(".read-btn");
-    const deleteBtns = document.querySelectorAll(".delete-btn");
-    console.log(readBtns, deleteBtns)
     overlay.style.display = 'none';
-})
-
-
-
-const readBtns = document.querySelectorAll(".read-btn");
-const deleteBtns = document.querySelectorAll(".delete-btn");
-
-console.log(readBtns, deleteBtns);
-
-// Read buttons function
-readBtns.forEach( (btn, index) => {
-    btn.addEventListener('click', e => {
-        const readStatus = document.getElementById(`${index}-stat`);
-        myLibrary[index].isRead = !myLibrary[index].isRead;
-        readStatus.textContent = 
-            myLibrary[index].isRead ? 
-            "Đã đọc" :
-            "Chưa đọc" ;
-        readStatus.style.color = 
-            myLibrary[index].isRead ?
-            'green' :
-            'red' ; 
-    })
-})
-
-// Delete buttons function
-deleteBtns.forEach( (btn, index) => {
-    btn.addEventListener('click', e => {
-        e.target.parentNode.parentNode.remove()
-    })
 })
 
 // Open modal, form
@@ -75,8 +40,6 @@ openModelBtn.addEventListener('click', e => {
 closeBtn.addEventListener('click', e => {
     overlay.style.display = 'none';
 })
-
-
 
 
 function addBookToLibrary(title, author, pages, isRead) {
@@ -98,7 +61,7 @@ function Book (title, author, pages, isRead){
         card.innerHTML += `
             <p><strong>${this.title}</strong></p>
             <p>${this.author}</p>
-            <p>${this.pages} trang</p>
+            <p>${this.pages? this.pages + " trang" : ""}</p>
             <p id="${myLibrary.indexOf(this)}-stat"
                 style="color: ${this.isRead? 'green' : 'red'}"    
             >
@@ -109,28 +72,17 @@ function Book (title, author, pages, isRead){
                 <button class="delete-btn">Delete</button>
             </div>
             `
+        const readBtn = card.querySelector('.read-btn');
+        readBtn.addEventListener('click', () => {
+            this.isRead = !this.isRead;
+            const readStatus = document.getElementById(`${myLibrary.indexOf(this)}-stat`);
+            readStatus.textContent = this.isRead ? "Đã đọc" : "Chưa đọc";
+            readStatus.style.color = this.isRead ? 'green' : 'red';
+        })
+
+        const deleteBtn = card.querySelector('.delete-btn');
+        deleteBtn.addEventListener('click', e => {
+            e.target.parentNode.parentNode.remove();
+        })
     }
 }
-
-// function populateBookCards() {
-//     myLibrary.forEach( (book,index) => {
-//         const card = document.createElement('div');
-//         booksContainer.appendChild(card);
-//         card.setAttribute('class','card');
-//         card.setAttribute('id', `card-${index}`)
-//         card.innerHTML += `
-//             <p><strong>${book.title}</strong></p>
-//             <p>${book.author}</p>
-//             <p>${book.pages} trang</p>
-//             <p id="${index}-stat"
-//                 style="color: ${book.isRead? 'green' : 'red'}"    
-//             >
-//                 ${book.isRead?"Đã đọc":"Chưa đọc"}
-//             </p>
-//             <div>
-//                 <button class="read-btn">Read</button>
-//                 <button class="delete-btn">Delete</button>
-//             </div>
-//             `
-//     })
-// }
