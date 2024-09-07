@@ -5,19 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="./favicon/favicon-16x16.png">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <link rel="stylesheet" href="fontawesome/all.min.css">
+    <link rel="stylesheet" href="fontawesome/fontawesome.min.css">
     <title>Book Library</title>
 </head>
 <body>
-    <header>
-        <img src="favicon/android-chrome-192x192.png" alt="Can logo" width="75px" height="75px">
-        <h1>Library</h1>
-    </header>
-    
-    <div class="sidebar">
-        <h1>New Book</h1>
-        <form action="post">
+
+    <div class="overlay">
+        <form action="/" method="post">
+            <i id="close-btn" class="fa-solid fa-circle-xmark" style="color: red;"></i>
+            <h3>Book Information</h3>
             <p>
                 <label for="book-title"><strong>Book Title</strong></label><br>
                 <input type="text" id="book-title" name="bookTitle">
@@ -31,12 +28,22 @@
                 <input type="number" id="book-pages" name="bookPages">
             </p>
             <p>
-                <label for="title"><strong>Do you read yet?</strong></label><br>
-                <input type="radio" id="book-read-yes" name="bookRead">Yes
-                <input type="radio" id="book-read-no" name="bookRead" checked>No
+                <label for="title"><strong>Do you read it yet?</strong></label><br>
+                <input type="radio" id="book-read-yes" name="bookRead" value="true">Yes
+                <input type="radio" id="book-read-no" name="bookRead" value="false" checked>No
             </p>
-            <button id="add-button" type="button">Add to Library</button>
+            <button id="add-book-button" type="button">Add to Library</button>
         </form>
+    </div>
+
+    <header>
+        <img src="favicon/android-chrome-192x192.png" alt="Can logo" width="75px" height="75px">
+        <h1>Library</h1>
+    </header>
+    
+    <div class="sidebar">
+        <h3>Do you want to add book to library?</h3>
+        <button id="open-modal-btn" type="button">Proceed</button>
     </div>
     
     <main>
@@ -49,5 +56,6 @@
     <footer>
         <h3>Contact: <a href="https://can-ngo.github.io/" target="_blank" rel="noreferrer noopener">can-ngo.github.io</a></h3>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

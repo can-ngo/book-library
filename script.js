@@ -1,4 +1,12 @@
 const booksContainer = document.querySelector('.books-container');
+const overlay = document.querySelector('.overlay');
+const form = document.querySelector('form');
+const closeBtn = document.querySelector('#close-btn');
+const openModelBtn = document.querySelector('#open-modal-btn');
+const addBookBtn = document.querySelector('#add-book-button');
+const bookTitle = document.querySelector('#book-title');
+const bookAuthor = document.querySelector('#book-author');
+const bookPages = document.querySelector('#book-pages');
 
 const myLibrary = [];
 
@@ -14,9 +22,26 @@ addBookToLibrary('Hạnh phúc ở dưới chân', "Tiến sĩ Trần Thị Gi�
 
 myLibrary.forEach( item => item.populate())
 
+// Add book
+addBookBtn.addEventListener('click', e => {
+    e.preventDefault();
+    const bookIsRead = document.querySelector('input[name="bookRead"]:checked').value;
+
+    addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookIsRead)
+    console.log(myLibrary[myLibrary.length - 1])
+    myLibrary[myLibrary.length - 1].populate();
+    const readBtns = document.querySelectorAll(".read-btn");
+    const deleteBtns = document.querySelectorAll(".delete-btn");
+    console.log(readBtns, deleteBtns)
+    overlay.style.display = 'none';
+})
+
+
 
 const readBtns = document.querySelectorAll(".read-btn");
 const deleteBtns = document.querySelectorAll(".delete-btn");
+
+console.log(readBtns, deleteBtns);
 
 // Read buttons function
 readBtns.forEach( (btn, index) => {
@@ -41,9 +66,21 @@ deleteBtns.forEach( (btn, index) => {
     })
 })
 
+// Open modal, form
+openModelBtn.addEventListener('click', e => {
+    overlay.style.display = 'flex';
+})
+
+// Close form, close modal
+closeBtn.addEventListener('click', e => {
+    overlay.style.display = 'none';
+})
+
+
+
 
 function addBookToLibrary(title, author, pages, isRead) {
-    let newBook = new Book(title, author, pages, isRead)
+    const newBook = new Book(title, author, pages, isRead)
     myLibrary.push(newBook);
     return
 }
