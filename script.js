@@ -78,8 +78,8 @@ function Book (title, author, pages, isRead){
                 ${this.isRead?"Đã đọc":"Chưa đọc"}
             </p>
             <div>
-                <button class="read-btn">Read</button>
-                <button class="delete-btn">Delete</button>
+                <button class="read-btn" style="background-color: ##0D47A1;">Read</button>
+                <button class="delete-btn" style="background-color: #FE6464;">Delete</button>
             </div>
             `
         const readBtn = card.querySelector('.read-btn');
